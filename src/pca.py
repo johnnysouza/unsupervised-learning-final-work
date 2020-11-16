@@ -16,5 +16,5 @@ def pca():
     print(y_test)
 
 
-def __main__():
+if __name__ == '__main__':
     pca()
