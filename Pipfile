@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 sklearn = "*"
+opencv-python = "*"
+opencv-contrib-python = "*"
 
 [dev-packages]
 pylint = "*"
