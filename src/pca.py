@@ -19,13 +19,20 @@ def pca():
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.7, test_size=0.3, random_state=42)
 
-    recognizer = cv2.face.EigenFaceRecognizer_create()
-    recognizer.train(X_train, y_train)
+    num_components_list = [10, 15, 20]
+    for num_components in num_components_list:
+        recognizer = cv2.face.EigenFaceRecognizer_create(num_components=num_components)
+        recognizer.train(X_train, y_train)
 
-    for i, x_test in enumerate(X_test):
-        [predicted_label, predicted_conf] = recognizer.predict(x_test)
-        print(f'Predicted label {predicted_label}')
-        print(f'True label {y_test[i]}')
+        true_count = 0
+
+        for i, x_test in enumerate(X_test):
+            predicted_label, _ = recognizer.predict(x_test)
+            if predicted_label == y_test[i]:
+                true_count += 1
+
+        accuracy = round((true_count*100) / len(X_test), 2)
+        print(f'{num_components} componentes principais, acurácia: {accuracy}%.')
 
 
 if __name__ == '__main__':
