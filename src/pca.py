@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import os
 
-from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
 
 ORL_PATH = f'data{os.path.sep}ORL'
